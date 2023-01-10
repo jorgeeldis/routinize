@@ -151,6 +151,10 @@ body {
         left: -30px;
         top: 2px;
     }
+
+    .workoutNames {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 442px) {
@@ -185,6 +189,10 @@ body {
         position: relative;
         left: -25px;
         top: 2px;
+    }
+
+    .workoutNames {
+        font-size: 16px;
     }
 }
 
