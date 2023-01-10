@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="icon" href="favicon.ico">
+
+
+    <title>Routinize! 💪</title>
+</head>
+
+<body>
+    <h1></h1>
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="jumbotron my-auto" id="exerciseCard">
+            <h1 class="display-6">Routinize! 💪</h1>
+            <h3>Add your exercise with sets & reps</h3>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="exerciseInput" placeholder="Exercise name (Push Ups)"
+                    aria-label="Exercise name" aria-describedby="basic-addon2" />
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="setsInput" placeholder="Number of sets (4)"
+                    aria-label="Number of sets" aria-describedby="basic-addon2" />
+            </div>
+
+            <div class="input-group">
+                <input type="text" class="form-control" id="repsInput"
+                    placeholder="Specify reps, minutes or seconds (10 reps)"
+                    aria-label="Text input with dropdown button" />
+            </div>
+            <br />
+            <div style="text-align: center">
+                <button type="button" class="btn btn-dark btn-lg" onclick="newExercise()">
+                    Add Exercise!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h1></h1>
+
+    <div class="container h-100 d-flex justify-content-center">
+        <div class="jumbotron my-auto" id="workoutCard">
+
+            <h1 class="display-6">Exercises: 🏋️‍♂️</h1>
+            <h3>Remember to always stretch before!</h3>
+            <ul id="exerciseList" class="workoutNames"></ul>
+            <br />
+
+            <div style="text-align: center">
+                <button type="button" class="btn btn-dark btn-lg" onclick="startWorkout()">
+                    Start Workout!
+                </button>
+            </div>
+
+            <br>
+
+            <div style="text-align: center">
+                <label for="files" class="btn btn-dark btn-lg">Add Workout TXT!</label>
+
+                <div id="showSuccess" class="alert alert-success" style="display: none">
+                    <h6 id="uploadSuccessful"></h6>
+                </div>
+
+                <input id="files" type="file" onchange="loadFile(this)" style="display:none">
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+    <h1></h1>
+
+    <div id="TestsDiv" style="display: none">
+        <div class="container h-100 d-flex justify-content-center">
+            <div class="jumbotron my-auto">
+                <h1 class="display-6">Exercise: 🏋️‍♂️</h1>
+                <h3 id="workout1"></h3>
+                <select name="form_select" class="custom-select" onchange="showDiv('hidden_div','hidden_div2', this)">
+                    <option value="0">Counter or Timer</option>
+                    <option value="1">Counter</option>
+                    <option value="2">Timer</option>
+                </select>
+
+                <div id="hidden_div" style="display: none">
+                    <br>
+                    <h1 class="counter-display">(..)</h1>
+                    <div class="buttonsCounter">
+                        <button type="button" class="counter-minus">-</button>
+                        <button type="button" class="counter-plus">+</button>
+                        <button type="button" class="counter-plus-5">+5</button>
+                        <h1></h1>
+                        <button type="button" class="counter-plus-10">+10</button>
+                    </div>
+                </div>
+                <h1></h1>
+                <div id="hidden_div2" class="stopwatch">
+                    <div class="circle">
+                        <span class="time" id="display">00:00:00</span>
+                    </div>
+                    <div class="controls">
+                        <button class="buttonPlay">
+                            <img id="playButton" width="80px" src="play.svg"></img>
+
+                            <img id="pauseButton" width="80px" src="pause.svg" />
+                        </button>
+
+                        <button class="buttonReset">
+                            <img id="resetButton" width="70px" src="reset.svg" />
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div style="text-align: center">
+                    <button type="button" class="btn btn-dark btn-lg" onclick="finishWorkout()">
+                        Finish!
+                    </button>
+                    <button type="button" class="btn btn-dark btn-lg" onclick="nextWorkout()">
+                        Next!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="TestsDiv2" style="display: none">
+        <div class="container h-100 d-flex justify-content-center">
+            <div class="jumbotron my-auto">
+                <h1 class="display-6">Congrats on finishing your workout! 🎆🎉🎊</h1>
+                <br>
+                <h1 class="display-6">Thanks for using this app! 😁</h1>
+                <br>
+                <div style="text-align: center">
+                    <button type="button" class="btn btn-dark btn-lg" onclick="downloadContract()">
+                        Save Workout!
+                    </button>
+                    <h1></h1>
+                    <button type="button" class="btn btn-dark btn-lg" onClick="window.location.reload();">
+                        Home Page!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <h1></h1>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="main.js"></script>
+</body>
+
+</html>
